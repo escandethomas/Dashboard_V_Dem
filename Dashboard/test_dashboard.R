@@ -1,5 +1,5 @@
 library(shiny)
-
+library(rsconnect)
 # Define UI ----
 ui <- fluidPage(
       img(src="Hzontal-logo.png", height = 70, width = 200),  
