@@ -1,0 +1,12 @@
+name: Dashboard
+title: Dashboard
+username:
+account: hzontal-tescande
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3464246
+bundleId: 4360532
+url: https://hzontal-tescande.shinyapps.io/Dashboard/
+when: 1616016500.05131
+asMultiple: FALSE
+asStatic: FALSE
