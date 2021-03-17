@@ -41,10 +41,7 @@ ui <- fluidPage(theme = shinytheme("flatly"),
     ),
     
     mainPanel(
-      plotlyOutput("index_evolution"),
-      br(),
-      br(),
-      downloadButton(outputId = "down", label = "Download the plot")
+      plotlyOutput("plot1", width = 800, height=700)
     )
   )
 )
