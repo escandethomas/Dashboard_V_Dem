@@ -14,7 +14,7 @@ package.check <- lapply(pacotes, FUN = function(x) {
 
 democracies <-readRDS("data/data_dashboard.rds")
 
-worldmap <- getMap(resolution = "low")
+worldmap <- getMap(resolution = "high")
 
 worldmap@data <-  worldmap@data %>% 
   dplyr::select(ADMIN,REGION,continent, POP_EST)

@@ -7,6 +7,8 @@ library(tidyverse)
 library(ggthemes)
 library(magrittr)
 library(dplyr)
+library(palmerpenguins)
+library(hrbrthemes)
 
 democracies <-readRDS("data/data_dashboard.rds")
 
@@ -67,23 +69,38 @@ server <- function(input, output) {
                 "v2x_partipdem" = "Index Participatory Democracy", 
                  "v2x_delibdem" = "Index Deliberative Democracy") 
           })
-    
+ 
+
+
+
     
     #Creating plot function to be used twice
+ 
+      
+
     myPlot <- function(){
-      ggplot(data(), aes_string(x = "year", y = input$var_y, colour = "country_name" )) + 
-        geom_line() +
+      ggplot(data(), aes(x = year,
+                         group = country_name,
+                         colour = country_name,
+                         text =  paste0("<b>Year: </b>", year,
+                                        "<b><br>Country: </b>", country_name,
+                                        "<br>Liberal Democracy: ", v2x_libdem ,
+                                        "<br>Participatory Democracy: ", v2x_partipdem ,
+                                        "<br>Electoral Democracy: ", v2x_polyarchy ,
+                                        "<br>Deliberative Democracy: ", v2x_delibdem ) )) + 
+        geom_line(aes_string(y = input$var_y)) +
         labs(x = "Year" , y = yl()) +
         theme_classic() +
         scale_color_discrete(name = "") +
         theme(
           legend.position = "bottom")
-    }    
-    
+}
+      
+
     output$index_evolution <- renderPlotly({ 
         print(
-          ggplotly(myPlot()) %>%   
-            layout(legend=list(orientation="h",x=0.4,y=-0.2))
+          ggplotly(myPlot(), tooltip = "text") %>%   
+            layout(legend=list(orientation="h",x=0.4,y=-0.2)) 
           )
     })
     
